@@ -26,6 +26,11 @@ Un repertoire `webservice` sera crée à la racine du site afin d'avoir un accè
 ### Application Android
 <a name="android_part"></a>
 
+#### Maquette [Bêta]
+![GitHub Logo](docs/images/maquette_mobile_1.png)
+
+#### Architecture
+
 Une architecture MVC à été mise en place.
 Nous avons 5 packages:
 - model : Pour les models
@@ -112,11 +117,20 @@ Nous aurons besoin des tables suivantes:
 
 ### FakeDB
 
-[FakeDB - Documentation et Installation](https://bitbucket.org/b4n92uid/fakedb)
+[FakeDB - Documentation et Installation](https://bitbucket.org/b4n92uid/fakedb) <font color="red">[ A voir ]</font>
+
+### Generator Data
+
+L'outil utilisé pour remplir la base de données est Generator Data.
 
 ## Repartition des tâches
 
 ### 19 Février 2016
+- SCHARTIER Isaac : Mise en place de l'application mobile
 - PIOCHE Kenjy : Maquette application mobile
 - ROBIN Dacalor : Création de la base de données - MCD
-- SCHARTIER Isaac : Mise en place de l'application mobile
+
+### 26 Février 2016
+- SCHARTIER Isaac :
+- PIOCHE Kenjy : Développement application Web
+- ROBIN Dacalor : Conception des layouts de l'application Android
