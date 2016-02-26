@@ -41,6 +41,11 @@ Nous avons 5 packages:
 
 La classe MVCPattern permet d'acceder en static aux MVC.
 
+#### Requête envoyé par les vues
+La classe `FormRequest` possede une liste public qui reference les données des formulaire. Il sagit d'un dictionnaire avec une clé et une valeur de tout type.
+
+Une méthode `sendRequest` permet de récupérer les informations des champs et d'instancier un objet de type `FormRequest`.
+
 #### La récuperation des données
 La classe `RequestTask` permet de récuperer les données sur la plateforme web, le principe du WebService. Comme nous l'avons precisé précedement, l'échange de données se font sous format JSON.
 
@@ -111,7 +116,7 @@ Nous aurons besoin des tables suivantes:
 
 - Android studio
 - WAMP
-- FakeDB
+- FakeDB ou Generator Data
 - Photoshop
 - Power AMC
 
@@ -123,14 +128,19 @@ Nous aurons besoin des tables suivantes:
 
 L'outil utilisé pour remplir la base de données est Generator Data.
 
+## Membres
+- SCHARTIER Isaac (Chef de projet)
+- DACALOR Robin
+- PIOCHE Kenjy
+
 ## Repartition des tâches
 
 ### 19 Février 2016
 - SCHARTIER Isaac : Mise en place de l'application mobile
 - PIOCHE Kenjy : Maquette application mobile
-- ROBIN Dacalor : Création de la base de données - MCD
+- DACALOR Robin : Création de la base de données - MCD
 
 ### 26 Février 2016
-- SCHARTIER Isaac :
+- SCHARTIER Isaac : Développement application Android
 - PIOCHE Kenjy : Développement application Web
-- ROBIN Dacalor : Conception des layouts de l'application Android
+- DACALOR Robin : Conception des layouts et formulaires de l'application Android
