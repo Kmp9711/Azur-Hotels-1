@@ -1,0 +1,7 @@
+<html>
+
+<body>
+  Salut
+</body>
+
+</html>

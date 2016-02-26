@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008c99</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorTitle">#FFFFFF</color>
+    <color name="colorBackgroundSession">#C4C4C4</color>
+    <color name="colorTitleSession">#595959</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorStrong">#1C1C1C</color>
+    <color name="colorLight">#626262</color>
+    <color name="colorPrice">#8300A0</color>
+</resources>
