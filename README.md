@@ -39,13 +39,13 @@ Nous avons 5 packages:
 
 La classe MVCPattern permet d'acceder en static aux MVC.
 
-#### Requête envoyé par les vues
-La classe `FormRequest` possede une liste public qui reference les données des formulaire. Il sagit d'un dictionnaire avec une clé et une valeur de tout type.
+#### Requêtes envoyées par les vues
+La classe `FormRequest` possede une liste public qui réfèrence les données des formulaire. Il sagit d'un dictionnaire avec une clé et une valeur de tout type.
 
 Une méthode `sendRequest` permet de récupérer les informations des champs et d'instancier un objet de type `FormRequest`.
 
-#### La récuperation des données (GET)
-La classe `RequestTask` permet de récuperer les données sur la plateforme web, le principe du WebService. Comme nous l'avons precisé précedement, l'échange de données se font sous format JSON.
+#### La récupération des données (GET)
+La classe `RequestTask` permet de récupérer les données sur la plateforme web, le principe du WebService. Comme nous l'avons precisé précedement, l'échange de données se font sous format JSON.
 
 Exemple:
 
@@ -69,15 +69,15 @@ Exemple:
 
 ```      
 
-Ici on instance HttpGet pour récuperer le flux de l'url ciblé (notre api).
-Aprés avoir récuperer le flux, il faut ensuite lire le contenu et le stocker dans une variable pour pouvoir la manipuler.
-Pour ce faire nous allons utiliser `InputStream` et `BufferedReader` pour la lecture et StringBuilder pour stocker une masse de caractère avec une bonne performance (lorsqu'il sagit de récupérer des informations d'une base de données parsé en JSON, il n'est pas étonnant d'avoir plus d'un millier de caractères).
+Ici on instance HttpGet pour récupérer le flux de l'url ciblé (notre api).
+Aprés avoir récupérer le flux, il faut ensuite lire le contenu et le stocker dans une variable pour pouvoir la manipuler.
+Pour ce faire nous allons utiliser `InputStream` et `BufferedReader` pour la lecture et StringBuilder pour stocker une masse de caractères avec une bonne performance (lorsqu'il sagit de récupérer des informations d'une base de données parsées en JSON, il n'est pas étonnant d'avoir plus d'un millier de caractères).
 
     Remarque: Si on utilise String, lorsqu'il sagira de manipuler certains caratères
-    sur un chaîne énorme,le framework va réallouer a nouveau le buffer et recopier le résultat tandis qu'avec StringBuilder il modifira directement la chaine initiale, on vois donc l'utilité d'utiliser le StringBuilder pour notre cas.
+    sur un chaîne énorme,le framework va réallouer à nouveau le buffer et recopier le résultat tandis qu'avec StringBuilder il modifira directement la chaine initiale, on vois donc l'utilité d'utiliser le StringBuilder pour notre cas.
 
 ##### Exemple JSON
-Une fois le contenu stocker dans `stringbulder`, il nous faut maintenant récuperer le format JSON.
+Une fois le contenu stocker dans `stringbulder`, il nous faut maintenant récupérer le format JSON.
 
 ``` java
     JSONObject jso = new JSONObject(strinbuilder.toString());
@@ -98,15 +98,15 @@ Une fois le contenu stocker dans `stringbulder`, il nous faut maintenant récupe
 ```
 
 On parse les informations en objet JSON graçe à `JSONObject`.
-Sachant qu'on qu'une table peut contenir plusieurs occurences/lignes, nous devrons utiliser `JSONArray` pour récuperer les informations sous forme de tableau.
+Sachant que nous possédons qu'une table peut contenir plusieurs occurences, nous allons utiliser `JSONArray` pour récuperer les informations sous forme de tableau.
 
-Maintenant il suffit de parcourir le tableau, de récuperer chaque ligne en tant qu'objet pour récuperer les champs
+Maintenant il suffit de parcourir le tableau, de récupérer chaque ligne en tant qu'objet pour accéder a ses attributs
 ``` java
   JSONObject obj1 = jsonArray.getJSONObject(j) // Récupère l'objet json stocké dans un tableau JSON
 ```
 
     Info : `JSONObject` comporte des méthodes permettant de récupérer
-    un champ selon le type de la données (string, int, double, etc)
+    un champ selon le type de la donnée (string, int, double, etc)
 
 La ligne `MVCPattern.model.addHotel(id, nom, tel, description, (float) prix);` accède au model de l'architecture MVC, model qui appel la méthode `addHotel` permettant d'ajouter dans une liste d'hotels directement accèssible depuis l'application Android, un hotel avec les paramètres données en arguments.
 
