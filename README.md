@@ -37,6 +37,7 @@ Nous avons 5 packages:
 - controller : Pour les controllers
 - view : Pour les vues
 - listener : Pour les interfaces
+- utils : Pour les utilitaires
 - webservice : Pour les requêtes Webservice en HTTP
 
 La classe MVCPattern permet d'acceder en static aux MVC.
@@ -46,7 +47,7 @@ La classe `FormRequest` possede une liste public qui reference les données des 
 
 Une méthode `sendRequest` permet de récupérer les informations des champs et d'instancier un objet de type `FormRequest`.
 
-#### La récuperation des données
+#### La récuperation des données (GET)
 La classe `RequestTask` permet de récuperer les données sur la plateforme web, le principe du WebService. Comme nous l'avons precisé précedement, l'échange de données se font sous format JSON.
 
 Exemple:
@@ -104,6 +105,75 @@ Maintenant il suffit de parcourir le tableau, de récuperer chaque ligne en tant
 
 La ligne `MVCPattern.model.addHotel(id, nom, tel, description, (float) prix);` accède au model de l'architecture MVC, model qui appel la méthode `addHotel` permettant d'ajouter dans une liste d'hotels directement accèssible depuis l'application Android, un hotel avec les paramètres données en arguments.
 
+#### L'envoi des données (POST)
+
+    HttpClient httpclient = new DefaultHttpClient();
+    HttpPost httppost = new HttpPost("<YOUR_SERVICE_URL>");
+
+       try {
+
+           JSONObject jsonobj = new JSONObject();
+
+           jsonobj.put("name", "Aneh");
+           jsonobj.put("age", "22");
+
+           ...
+
+##### Exemple de l'utilisation FormRequest pour effectuer un POST
+Imaginons que dans le formulaire nous avions eu les champs `mail` et `pseudo`, notre HashMap devrait contenir par exemple:
+
+    "mail" -> "mailexample@gmail.com",
+    "pseudo" -> "monPseudo"
+
+Si nous voulons envoyer ces données en JSON, on peut donc faire quelque chose similaire à ca:
+
+    // Exemple
+    for (String key : request.data.keySet()){
+        jsonobj.put(key, request.data.get(key));
+    }
+
+En gros pour chaque clé dans le HashMap, on ajoute dans l'objet JSON une occurence avec la clé et la valeur correspondant a la ligne courante du HashMap
+
+      NOTE : request est une instance de FormRequest, et data est
+           le HashMap contenant les informations des champs du formulaire.
+
+#### RequestListener
+Une classe Interface à été développée pour effectuer une action bien définie à la fin d'une requete POST ou GET.
+
+Exemple :
+
+    RequestListener listener = new RequestListener() {
+        @Override
+        public void whenFinish() {
+            MVCPattern.view.afficheLesHotels(MVCPattern.model.getHotels());
+        }
+    };
+
+Dans cette exemple on veut afficher la liste des hotels par l'intermédiaire d'une vue lorsque la requête sera fini ( d'où le `whenFinish` ).
+
+    Note : Il sagit de l'interface liée a la requête qui récupère la liste des hotels.
+
+#### Constantes (RequestAction)
+
+    public class RequestAction {
+
+        public static final String ws_url = "http://10.0.2.2/azure_app/webservice/api.php";
+        public static final String ws_url_get = ws_url + "?action=get";
+        public static final String ws_url_post = ws_url + "?action=post";
+
+        // Constants Get
+        class Get{
+            public static final String GET_HOTELS="get_hotels", GET_ALL_USERS="get_users";
+        }
+
+        ...
+
+Toute les constantes en rapport avec les requêtes sont définies dans la classe `RequestAction`.
+
+#### UrlUtils
+Un utilitaire dans le package `utils` pour traiter les Urls.
+Une méthode `getQueryParams` pour récuperer les paramètres d'un URL, cette méthode s'avère trés utile nottament pour tester l'action d'une requête REST Web Service.
+
 ### Base de données
 Nom de la base de données : db_azur_hotels
 
@@ -115,6 +185,7 @@ Nous aurons besoin des tables suivantes:
 ## Outils utilisés
 
 - Android studio
+- Atom
 - WAMP
 - FakeDB ou Generator Data
 - Photoshop
@@ -126,7 +197,7 @@ Nous aurons besoin des tables suivantes:
 
 ### Generator Data
 
-L'outil utilisé pour remplir la base de données est Generator Data.
+L'outil utilisé pour remplir la base de données de facon aléatoire se nomme Generator Data.
 
 ## Membres
 - SCHARTIER Isaac (Chef de projet)
@@ -136,11 +207,25 @@ L'outil utilisé pour remplir la base de données est Generator Data.
 ## Repartition des tâches
 
 ### 19 Février 2016
-- SCHARTIER Isaac : Mise en place de l'application mobile
+- SCHARTIER Isaac :
+  - Mise en place de l'application mobile
+  - Rédaction de la documentation
 - PIOCHE Kenjy : Maquette application mobile
 - DACALOR Robin : Création de la base de données - MCD
 
 ### 26 Février 2016
-- SCHARTIER Isaac : Développement application Android
+- SCHARTIER Isaac :
+  - Développement application Android
+  - Rédaction de la documentation
 - PIOCHE Kenjy : Développement application Web
 - DACALOR Robin : Conception des layouts et formulaires de l'application Android
+
+### 4 Mars 2016
+- SCHARTIER Isaac :
+  - Développement application Android
+  - Rédaction de la documentation
+  - Mise en place de l'exemple de l'api PHP pour le WebService sur une architecture REST.
+- PIOCHE Kenjy :
+  - Développement application Web
+- DACALOR Robin :
+  - Intégration dans le développement de l'application Android

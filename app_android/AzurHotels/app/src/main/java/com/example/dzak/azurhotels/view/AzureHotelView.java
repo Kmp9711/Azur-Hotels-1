@@ -7,7 +7,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import com.example.dzak.azurhotels.FormRequest;
 import com.example.dzak.azurhotels.R;
+import com.example.dzak.azurhotels.listener.FormListener;
 import com.example.dzak.azurhotels.listener.MenuListener;
 import com.example.dzak.azurhotels.model.Hotel;
 
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class AzureHotelView {
 
     public Activity activity;
+    public FormRequest request;
 
     String[] titleTexte = {"Menu principale", "Les hotels"};
 
@@ -59,9 +62,43 @@ public class AzureHotelView {
         lv_hotels.setAdapter(mAdapter);
     }
 
+    public void afficheLogin(){
+        request = new FormRequest();
+        String mail = "";
+        String mdp = "";
+        request.data.put("mail", mail);
+        request.data.put("mdp", mdp);
+
+        FormListener listener = new FormListener() {
+            @Override
+            public void onSend() {
+                ArrayList<String> fields = new ArrayList<>();
+                ArrayList<Object> objects = new ArrayList<>();
+                sendRequest(fields, objects);
+            }
+        };
+    }
+
+    public void activeUserBar(){
+        // TO DO
+    }
+
     public void setTitle(int index){
         TextView textView = (TextView) activity.findViewById(R.id.session_title);
         textView.setText(titleTexte[index]);
+    }
+
+    /**
+     * Send request
+     * @param fields
+     * @param values
+     */
+    public void sendRequest(ArrayList<String> fields, ArrayList<Object> values){
+        request = new FormRequest();
+
+        for(int i = 0; i < fields.size(); i++){
+            request.data.put(fields.get(i), values.get(i));
+        }
     }
 
     public void switchPage(int index){

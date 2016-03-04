@@ -2,8 +2,6 @@ package com.example.dzak.azurhotels.controller;
 
 import com.example.dzak.azurhotels.MVCPattern;
 import com.example.dzak.azurhotels.listener.MenuListener;
-import com.example.dzak.azurhotels.model.AzureHotelModel;
-import com.example.dzak.azurhotels.view.AzureHotelView;
 import com.example.dzak.azurhotels.webservice.RequestAction;
 import com.example.dzak.azurhotels.webservice.RequestListener;
 import com.example.dzak.azurhotels.webservice.RequestTask;
@@ -40,7 +38,25 @@ public class AzureHotelController {
             }
         };
 
-        RequestTask request = new RequestTask(RequestAction.GET_HOTELS, listener);
-        request.execute("http://10.0.2.2/azure_app/webservice/api.php?action=get&var=temp");
+        RequestTask request = new RequestTask(listener);
+        request.execute(RequestAction.ws_url_get + "&var=get_hotels");
+    }
+
+    public void getLogin(){
+        // TO DO
+    }
+
+    public void loginProcess(){
+        // Get data
+        RequestListener listener = new RequestListener() {
+            @Override
+            public void whenFinish() {
+                MVCPattern.view.activeUserBar();
+            }
+        };
+
+        // Il serais préférable d'utuliser un post pour recupere l'utilsateur via la requete sql
+        // avec les champs mail et mdp
+        //RequestTask request = new RequestTask(listener);
     }
 }
