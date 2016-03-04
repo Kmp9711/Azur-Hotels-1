@@ -3,9 +3,6 @@
 
 Nous avons pour mission de développer une application mobile Android téléchargeable ou accessible sur un plateforme web du groupe Azur.
 
-## Sommaire
-- [Application android]("#part1")
-
 ## Introduction
 
 - Application web (PHP, MySQL)
