@@ -49,6 +49,7 @@ La classe `RequestTask` permet de récuperer les données sur la plateforme web,
 
 Exemple:
 
+``` java
     HttpGet httpGet = new HttpGet(url);
     HttpResponse httpresponse=httpclient.execute(httpGet);
     HttpEntity httpentity=httpresponse.getEntity();
@@ -66,6 +67,8 @@ Exemple:
 
         bufferedreader.close();
 
+```      
+
 Ici on instance HttpGet pour récuperer le flux de l'url ciblé (notre api).
 Aprés avoir récuperer le flux, il faut ensuite lire le contenu et le stocker dans une variable pour pouvoir la manipuler.
 Pour ce faire nous allons utiliser `InputStream` et `BufferedReader` pour la lecture et StringBuilder pour stocker une masse de caractère avec une bonne performance (lorsqu'il sagit de récupérer des informations d'une base de données parsé en JSON, il n'est pas étonnant d'avoir plus d'un millier de caractères).
@@ -76,6 +79,7 @@ Pour ce faire nous allons utiliser `InputStream` et `BufferedReader` pour la lec
 ##### Exemple JSON
 Une fois le contenu stocker dans `stringbulder`, il nous faut maintenant récuperer le format JSON.
 
+``` java
     JSONObject jso = new JSONObject(strinbuilder.toString());
     JSONArray jsonArray = jso.getJSONArray(table);
 
@@ -91,11 +95,15 @@ Une fois le contenu stocker dans `stringbulder`, il nous faut maintenant récupe
         response = RESULT.OK;
 
     }
+```
 
 On parse les informations en objet JSON graçe à `JSONObject`.
 Sachant qu'on qu'une table peut contenir plusieurs occurences/lignes, nous devrons utiliser `JSONArray` pour récuperer les informations sous forme de tableau.
 
-Maintenant il suffit de parcourir le tableau, de récuperer chaque ligne en tant qu'objet (`JSONObject obj1 = jsonArray.getJSONObject(j)`), puis on récupère les champs.
+Maintenant il suffit de parcourir le tableau, de récuperer chaque ligne en tant qu'objet pour récuperer les champs
+``` java
+  JSONObject obj1 = jsonArray.getJSONObject(j) // Récupère l'objet json stocké dans un tableau JSON
+```
 
     Info : `JSONObject` comporte des méthodes permettant de récupérer
     un champ selon le type de la données (string, int, double, etc)
@@ -104,6 +112,7 @@ La ligne `MVCPattern.model.addHotel(id, nom, tel, description, (float) prix);` a
 
 #### L'envoi des données (POST)
 
+``` java
     HttpClient httpclient = new DefaultHttpClient();
     HttpPost httppost = new HttpPost("<YOUR_SERVICE_URL>");
 
@@ -116,6 +125,8 @@ La ligne `MVCPattern.model.addHotel(id, nom, tel, description, (float) prix);` a
 
            ...
 
+```
+
 ##### Exemple de l'utilisation FormRequest pour effectuer un POST
 Imaginons que dans le formulaire nous avions eu les champs `mail` et `pseudo`, notre HashMap devrait contenir par exemple:
 
@@ -124,10 +135,12 @@ Imaginons que dans le formulaire nous avions eu les champs `mail` et `pseudo`, n
 
 Si nous voulons envoyer ces données en JSON, on peut donc faire quelque chose similaire à ca:
 
+``` java
     // Exemple
     for (String key : request.data.keySet()){
         jsonobj.put(key, request.data.get(key));
     }
+```
 
 En gros pour chaque clé dans le HashMap, on ajoute dans l'objet JSON une occurence avec la clé et la valeur correspondant a la ligne courante du HashMap
 
@@ -139,19 +152,23 @@ Une classe Interface à été développée pour effectuer une action bien défin
 
 Exemple :
 
+``` java
     RequestListener listener = new RequestListener() {
         @Override
         public void whenFinish() {
             MVCPattern.view.afficheLesHotels(MVCPattern.model.getHotels());
         }
     };
+```
 
 Dans cette exemple on veut afficher la liste des hotels par l'intermédiaire d'une vue lorsque la requête sera fini ( d'où le `whenFinish` ).
 
-    Note : Il sagit de l'interface liée a la requête qui récupère la liste des hotels.
+    Note : Il sagit de l'interface liée a la requête qui récupère
+    la liste des hotels.
 
 #### Constantes (RequestAction)
 
+``` java
     public class RequestAction {
 
         public static final String ws_url = "http://10.0.2.2/azure_app/webservice/api.php";
@@ -164,6 +181,7 @@ Dans cette exemple on veut afficher la liste des hotels par l'intermédiaire d'u
         }
 
         ...
+```
 
 Toute les constantes en rapport avec les requêtes sont définies dans la classe `RequestAction`.
 
