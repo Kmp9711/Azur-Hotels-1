@@ -14,9 +14,7 @@
         android:layout_height="wrap_content"
         layout="@layout/title_bar"
         android:id="@+id/includeTitleBar"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentTop="true"/>
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -25,26 +23,12 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/includeTitleBar"
-        android:layout_alignStart="@+id/includeTitleBar">
+        android:layout_below="@+id/includeTitleBar">
 
-        <ViewSwitcher
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/viewSwitcher"
-            android:layout_alignParentStart="true">
-
-            <include
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                layout="@layout/menu_main" />
-
-            <include
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                layout="@layout/hotels_main" />
-
-        </ViewSwitcher>
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/menu_main" />
 
     </RelativeLayout>
 

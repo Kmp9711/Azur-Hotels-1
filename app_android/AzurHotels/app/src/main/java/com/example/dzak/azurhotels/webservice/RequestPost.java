@@ -32,9 +32,11 @@ public class RequestPost extends AsyncTask<String, Void, String> {
     // Response
     String responseServer;
     private FormRequest request;
+    private RequestListener listener;
 
-    public RequestPost(FormRequest request){
+    public RequestPost(FormRequest request, RequestListener listener){
         this.request = request;
+        this.listener = listener;
     }
 
     @Override
@@ -65,6 +67,17 @@ public class RequestPost extends AsyncTask<String, Void, String> {
                         nameValuePairs.add(new BasicNameValuePair(action, jsonobj.toString()));
 
                         break;
+
+                    case RequestAction.Post.REQ_LOGIN:
+
+                        // Exemple
+                        for (String key : request.data.keySet()){
+                            jsonobj.put(key, request.data.get(key));
+                        }
+
+                        nameValuePairs.add(new BasicNameValuePair(action, jsonobj.toString()));
+
+                        break;
                 }
 
                 // Si l'objet json n'est pas vide
@@ -82,8 +95,13 @@ public class RequestPost extends AsyncTask<String, Void, String> {
                     InputStreamToStringExample str = new InputStreamToStringExample();
                     responseServer = str.getStringFromInputStream(inputStream);
                     Log.e("response", "response -----" + responseServer);
-                }
-                else{
+
+                    // Appel la methode "whenFinish"
+                    if (listener != null) {
+                        listener.whenFinish();
+                    }
+
+                } else{
                     Log.i("JSON_POST", "Erreur, l'objet JSON est vide");
                 }
 
@@ -96,19 +114,6 @@ public class RequestPost extends AsyncTask<String, Void, String> {
     }
 
     public static class InputStreamToStringExample {
-
-        public static void main(String[] args) throws IOException {
-
-            // Init an InputStream
-            InputStream is =
-                    new ByteArrayInputStream("file content..blah blah".getBytes());
-
-            String result = getStringFromInputStream(is);
-
-            System.out.println(result);
-            System.out.println("Done");
-
-        }
 
         // convert InputStream to String
         private static String getStringFromInputStream(InputStream is) {
@@ -137,6 +142,5 @@ public class RequestPost extends AsyncTask<String, Void, String> {
             }
             return sb.toString();
         }
-
     }
 }

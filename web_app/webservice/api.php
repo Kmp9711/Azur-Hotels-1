@@ -67,7 +67,7 @@ function api_post($var){
         array("mail" => "laffont@gmail.com", "mdp" => "laffont971", "nom" => "Laffont", "prenom" => "Lise")
       );
 
-      foreach ($user as $tab['users']) {
+      foreach ($tab['users'] as $user) {
         if ($user['mail'] == $mail && $user['mdp'] == $mdp){
           $userResult = $user;
         }

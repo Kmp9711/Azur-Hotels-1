@@ -23,7 +23,7 @@ public class AzureHotelModel {
     }
 
     /**
-     * Nettoye la liste d'hotels
+     * Nettoie la liste d'hotels
      */
     public void resetHotel(){
         hotels.clear();

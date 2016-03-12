@@ -244,3 +244,12 @@ L'outil utilisé pour remplir la base de données de facon aléatoire se nomme G
   - Développement application Web
 - DACALOR Robin :
   - Intégration dans le développement de l'application Android
+
+### 11 Mars 2016
+- SCHARTIER Isaac :
+  - Développement application Android
+  - Rédaction de la documentation architecture REST
+- PIOCHE Kenjy :
+  - Développement application Web
+- DACALOR Robin :
+  - Développement de l'application Android
