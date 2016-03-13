@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".HotelActivity"></activity>
+        <activity android:name=".HotelActivity" />
+        <activity android:name=".intent.HotelProfilActivity"></activity>
     </application>
 
 </manifest>

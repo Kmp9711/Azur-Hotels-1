@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.dzak.azurhotels.FormRequest;
 import com.example.dzak.azurhotels.MVCPattern;
 import com.example.dzak.azurhotels.listener.MenuListener;
+import com.example.dzak.azurhotels.model.Hotel;
 import com.example.dzak.azurhotels.webservice.RequestAction;
 import com.example.dzak.azurhotels.webservice.RequestListener;
 import com.example.dzak.azurhotels.webservice.RequestPost;
@@ -44,6 +45,10 @@ public class AzureHotelController {
 
         RequestTask request = new RequestTask(listener);
         request.execute(RequestAction.ws_url_get + "&var=get_hotels");
+    }
+
+    public void getHotelProfil(Hotel hotel){
+        MVCPattern.view.afficheHotelProfil(hotel);
     }
 
     public void getLogin(){

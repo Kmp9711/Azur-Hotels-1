@@ -18,8 +18,8 @@ public class AzureHotelModel {
      * @param description
      * @param prix
      */
-    public void addHotel(int id, String nom, String tel, String description, float prix){
-        hotels.add(new Hotel(id, nom, tel, description, prix));
+    public void addHotel(int id, String nom, String tel, String cp, String adresse, String description, float rank, float prix){
+        hotels.add(new Hotel(id, nom, tel, cp, adresse, description, rank, prix));
     }
 
     /**

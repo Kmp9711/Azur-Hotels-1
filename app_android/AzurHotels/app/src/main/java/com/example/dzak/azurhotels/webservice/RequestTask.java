@@ -89,11 +89,14 @@ public class RequestTask extends AsyncTask<String, Void, String> {
                                 int id = obj1.getInt("id");
                                 String nom = obj1.getString("nom");
                                 String tel = obj1.getString("tel");
+                                String cp = obj1.getString("cp");
+                                String adresse = obj1.getString("adresse");
                                 String description = obj1.getString("description");
                                 double prix = obj1.getDouble("prix");
+                                double rank = obj1.getDouble("rank");
 
                                 // Ajoute l'hotel dans le model
-                                MVCPattern.model.addHotel(id, nom, tel, description, (float) prix);
+                                MVCPattern.model.addHotel(id, nom, tel, cp, adresse, description, (float) rank, (float) prix);
                                 response = RESULT.OK;
 
                             }

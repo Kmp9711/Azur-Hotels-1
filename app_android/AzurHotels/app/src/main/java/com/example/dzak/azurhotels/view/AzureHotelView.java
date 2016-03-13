@@ -13,6 +13,7 @@ import com.example.dzak.azurhotels.HotelActivity;
 import com.example.dzak.azurhotels.LoginActivity;
 import com.example.dzak.azurhotels.MVCPattern;
 import com.example.dzak.azurhotels.R;
+import com.example.dzak.azurhotels.intent.HotelProfilActivity;
 import com.example.dzak.azurhotels.listener.MenuListener;
 import com.example.dzak.azurhotels.listener.ViewListener;
 import com.example.dzak.azurhotels.model.Hotel;
@@ -108,6 +109,20 @@ public class AzureHotelView {
 
         Intent menu_intent = new Intent(activity, LoginActivity.class);
         switchActivity(menu_intent);
+    }
+
+    public void afficheHotelProfil(Hotel hotel){
+        Intent hotel_intent = new Intent(activity, HotelProfilActivity.class);
+        // Put extra
+        hotel_intent.putExtra("nom", hotel.getNom());
+        hotel_intent.putExtra("price", hotel.getPrix());
+        hotel_intent.putExtra("rank", hotel.getRate());
+        hotel_intent.putExtra("tel", hotel.getTel());
+        hotel_intent.putExtra("cp", hotel.getCp());
+        hotel_intent.putExtra("adresse", hotel.getAdresse());
+        hotel_intent.putExtra("description", hotel.getDescription());
+        // Switch activity
+        switchActivity(hotel_intent);
     }
 
     public void activeUserBar(){
