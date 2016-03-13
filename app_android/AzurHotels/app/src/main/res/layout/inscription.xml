@@ -12,12 +12,11 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/editText"
-        android:layout_marginTop="73dp"
         android:text="E-mail"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/editText2"
-        style="@style/Base.V12.Widget.AppCompat.AutoCompleteTextView"
-        android:password="false" />
+        android:password="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="350dp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -25,10 +24,10 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editText2"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentEnd="true"
-        android:text="Mot de passe" />
+        android:text="Mot de passe"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="250dp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -36,10 +35,10 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editText3"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentEnd="true"
-        android:text="Mot de passe" />
+        android:text="Mot de passe"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="150dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,8 +46,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Mot de passe :"
         android:id="@+id/textView2"
-        android:layout_above="@+id/editText3"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="260dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,8 +56,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="E-mail :"
         android:id="@+id/textView"
-        android:layout_above="@+id/editText2"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="360dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,8 +66,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Confirmer :"
         android:id="@+id/textView3"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="160dp" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -74,9 +76,10 @@
         android:id="@+id/checkBox"
         android:checked="true"
         android:text="Me connecter automatiquement"
-        android:layout_marginBottom="51dp"
         android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="85dp"/>
 
     <Button
         style="@style/Widget.AppCompat.Button.Colored"
@@ -87,6 +90,6 @@
         android:clickable="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="36dp" />
+        android:layout_marginBottom="5dp" />
 
 </RelativeLayout>
