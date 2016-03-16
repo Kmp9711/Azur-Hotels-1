@@ -51,7 +51,7 @@ public class AzureHotelView {
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.menu_linear_layout);
 
         Button btn_hotels = (Button) layout.findViewById(R.id.btn_hotels);
-        Button btn_login = (Button) layout.findViewById(R.id.btn_login);
+        Button btn_login = (Button) layout.findViewById(R.id.btn_cancel_reservation);
 
 
         // Bouton pour appeler le controller hotel

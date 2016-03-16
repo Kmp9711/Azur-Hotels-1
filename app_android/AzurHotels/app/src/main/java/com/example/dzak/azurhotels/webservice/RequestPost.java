@@ -58,34 +58,25 @@ public class RequestPost extends AsyncTask<String, Void, String> {
 
                 switch(action){
                     case RequestAction.Post.REQ_REGISTRE:
-
                         // Exemple
                         for (String key : request.data.keySet()){
                             jsonobj.put(key, request.data.get(key));
                         }
-
                         nameValuePairs.add(new BasicNameValuePair(action, jsonobj.toString()));
-
                         break;
 
                     case RequestAction.Post.REQ_LOGIN:
-
-                        // Exemple
                         for (String key : request.data.keySet()){
                             jsonobj.put(key, request.data.get(key));
                         }
-
                         nameValuePairs.add(new BasicNameValuePair(action, jsonobj.toString()));
-
                         break;
                 }
 
                 // Si l'objet json n'est pas vide
                 if (jsonobj.length() > 0 ) {
-
                     Log.e(
                             "mainToPost", "mainToPost" + nameValuePairs.toString());
-
                     // Use UrlEncodedFormEntity to send in proper format which we need
                     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
@@ -98,7 +89,7 @@ public class RequestPost extends AsyncTask<String, Void, String> {
 
                     // Appel la methode "whenFinish"
                     if (listener != null) {
-                        listener.whenFinish();
+                        listener.whenFinish(responseServer);
                     }
 
                 } else{

@@ -18,18 +18,21 @@
             android:textSize="20dp" />
 
         <Button
-            style="?android:attr/buttonStyleSmall"
+            style="@style/button_menu"
+            android:background="@drawable/main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Voir les hotels"
+            android:text="Voir tout les hotels"
             android:id="@+id/btn_hotels"
             android:layout_gravity="center_horizontal" />
 
         <Button
+            style="@style/button_menu"
+            android:background="@drawable/main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Se connecter"
-            android:id="@+id/btn_login"
+            android:text="Annuler une reservation"
+            android:id="@+id/btn_cancel_reservation"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>

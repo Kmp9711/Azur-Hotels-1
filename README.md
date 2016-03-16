@@ -127,6 +127,15 @@ La ligne `MVCPattern.model.addHotel(id, nom, tel, description, (float) prix);` a
 
 ```
 
+Nous devons définir une liste "NameValuePair":
+
+``` java
+    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+```
+Il sagit tout simplement d'un dictionnaire utilisé pour l'envoie des données sous forme de paramètres dans pour requête Http. Nous aurons donc une clé et une valeur pour chaque ligne
+
+    Exemple: www.xxx.com?key=value&key2=value2
+
 ##### Exemple de l'utilisation FormRequest pour effectuer un POST
 Imaginons que dans le formulaire nous avions eu les champs `mail` et `pseudo`, notre HashMap devrait contenir par exemple:
 
