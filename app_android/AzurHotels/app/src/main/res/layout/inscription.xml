@@ -11,102 +11,72 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/edt_mail"
         android:text="E-mail"
-<<<<<<< HEAD
         android:password="false"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="350dp"/>
-=======
-        android:layout_alignParentTop="true"
-        style="@style/Base.V12.Widget.AppCompat.AutoCompleteTextView"
-        android:password="false" />
->>>>>>> refs/remotes/Dynamique-Zak/master
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText2"
-<<<<<<< HEAD
+        android:id="@+id/edt_mdp"
         android:text="Mot de passe"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="250dp"/>
-=======
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/editText"
-        android:text="Mot de passe" />
->>>>>>> refs/remotes/Dynamique-Zak/master
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText3"
-<<<<<<< HEAD
+        android:id="@+id/edt_confirm_mdp"
         android:text="Mot de passe"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="150dp"/>
-=======
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/editText2"
-        android:text="Mot de passe" />
->>>>>>> refs/remotes/Dynamique-Zak/master
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Mot de passe :"
-        android:id="@+id/textView2"
-<<<<<<< HEAD
+        android:id="@+id/tv_mdp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="260dp"/>
-=======
-        android:layout_above="@+id/editText3"/>
->>>>>>> refs/remotes/Dynamique-Zak/master
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="E-mail :"
-        android:id="@+id/textView"
-<<<<<<< HEAD
+        android:id="@+id/tv_mail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="360dp"/>
-=======
-        android:layout_above="@+id/editText2" />
->>>>>>> refs/remotes/Dynamique-Zak/master
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Confirmer :"
-        android:id="@+id/textView3"
-<<<<<<< HEAD
+        android:id="@+id/tv_confirm_mdp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="160dp" />
-=======
-        android:layout_alignBottom="@+id/editText3" />
->>>>>>> refs/remotes/Dynamique-Zak/master
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
+        android:id="@+id/check_autoconnect"
         android:checked="true"
         android:text="Me connecter automatiquement"
-        android:layout_above="@+id/button"
+        android:layout_above="@+id/btn_sinscrire"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="85dp"/>
@@ -116,10 +86,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="S&apos;INSCRIRE"
-        android:id="@+id/button"
+        android:id="@+id/btn_sinscrire"
         android:clickable="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Veuillez remplir tous les champs pour que votre compte soit correctement crée :"
+        android:id="@+id/tv_inscription"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
 
 </RelativeLayout>
