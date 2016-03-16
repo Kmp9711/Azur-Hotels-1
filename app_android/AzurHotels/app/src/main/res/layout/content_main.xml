@@ -14,7 +14,10 @@
         android:layout_height="wrap_content"
         layout="@layout/title_bar"
         android:id="@+id/includeTitleBar"
+<<<<<<< HEAD
         android:layout_centerInParent="true"
+=======
+>>>>>>> refs/remotes/Dynamique-Zak/master
         android:layout_alignParentTop="true"/>
 
     <RelativeLayout
