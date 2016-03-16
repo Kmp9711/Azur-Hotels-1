@@ -113,7 +113,7 @@ public class RequestTask extends AsyncTask<String, Void, String> {
 
     @Override protected void onPostExecute(String result) {
         if (listener != null) {
-            listener.whenFinish();
+            listener.whenFinish(result);
         }
     }
 }

@@ -5,6 +5,6 @@ package com.example.dzak.azurhotels.webservice;
  */
 public interface RequestListener {
 
-    public void whenFinish();
+    public void whenFinish(String response);
 
 }

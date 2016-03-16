@@ -38,7 +38,7 @@ public class AzureHotelController {
         // Get data
         RequestListener listener = new RequestListener() {
             @Override
-            public void whenFinish() {
+            public void whenFinish(String response) {
                 MVCPattern.view.afficheLesHotels(MVCPattern.model.getHotels());
             }
         };
@@ -58,7 +58,7 @@ public class AzureHotelController {
     public void loginProcess(final FormRequest formRequest){
         RequestListener listener = new RequestListener() {
             @Override
-            public void whenFinish() {
+            public void whenFinish(String response) {
                 // Connexion
                 String mail = formRequest.data.get("mail").toString();
                 String nom = formRequest.data.get("nom").toString();
@@ -72,5 +72,27 @@ public class AzureHotelController {
 
         RequestPost request = new RequestPost(formRequest, listener);
         request.execute(RequestAction.ws_url_post + "&var=req_login");
+    }
+
+    /**
+     * Controller pour appeler un formulaire de servation d'un hotel
+     * @param formRequest Les données du formulaire
+     */
+    public void annulerUneResveration(final FormRequest formRequest){
+        RequestListener listener = new RequestListener() {
+            @Override
+            public void whenFinish(String response) {
+                // Connexion
+                String num = formRequest.data.get("num_reservation").toString();
+                String code = formRequest.data.get("code_access").toString();
+
+                //MVCPattern.model.connectUser(mail, nom, prenom);
+                // Test redirection au menu
+                Log.i("Reservation", "Reservation annulée");
+            }
+        };
+
+        RequestPost request = new RequestPost(formRequest, listener);
+        request.execute(RequestAction.ws_url_post + "&var=req_annuler_reserver");
     }
 }
