@@ -9,9 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.dzak.azurhotels.MVCPattern;
 import com.example.dzak.azurhotels.R;
 import com.example.dzak.azurhotels.model.Hotel;
 
@@ -84,11 +87,20 @@ public class ListViewHotelAdapter extends BaseAdapter {
         View rowTextView;
         TextView title;
         TextView price;
+        RatingBar ratingBar;
         TextView description;
+        View layout_footer;
+        TextView txv_view_more_hotel;
+        Button btn_reserv;
+
+        public void display(){
+            rowTextView.setVisibility(View.VISIBLE);
+            layout_footer.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewHolder holder;
@@ -105,8 +117,24 @@ public class ListViewHotelAdapter extends BaseAdapter {
             holder.rowTextView = convertView.findViewById(R.id.layout_hotel_text);
             holder.title = (TextView) convertView.findViewById(R.id.hotel_name);
             holder.price = (TextView) holder.rowTextView.findViewById(R.id.hotel_price);
+            holder.ratingBar = (RatingBar) holder.rowTextView.findViewById(R.id.rating_bar);
 
             holder.description = (TextView) convertView.findViewById(R.id.hotel_description);
+
+            holder.layout_footer = convertView.findViewById(R.id.layout_hotel_footer);
+            holder.txv_view_more_hotel = (TextView) holder.layout_footer.findViewById(R.id.txv_view_more_hotel);
+            holder.btn_reserv = (Button) holder.layout_footer.findViewById(R.id.btn_reservation);
+
+            // Listener
+            holder.txv_view_more_hotel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MVCPattern.controller.getHotelProfil(getItem(position));
+                }
+            });
+
+            // Display holder components
+            holder.display();
 
             convertView.setTag(holder);
         } else {

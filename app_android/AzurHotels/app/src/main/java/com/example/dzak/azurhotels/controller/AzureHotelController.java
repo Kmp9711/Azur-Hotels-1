@@ -1,9 +1,14 @@
 package com.example.dzak.azurhotels.controller;
 
+import android.util.Log;
+
+import com.example.dzak.azurhotels.FormRequest;
 import com.example.dzak.azurhotels.MVCPattern;
 import com.example.dzak.azurhotels.listener.MenuListener;
+import com.example.dzak.azurhotels.model.Hotel;
 import com.example.dzak.azurhotels.webservice.RequestAction;
 import com.example.dzak.azurhotels.webservice.RequestListener;
+import com.example.dzak.azurhotels.webservice.RequestPost;
 import com.example.dzak.azurhotels.webservice.RequestTask;
 
 /**
@@ -42,21 +47,30 @@ public class AzureHotelController {
         request.execute(RequestAction.ws_url_get + "&var=get_hotels");
     }
 
-    public void getLogin(){
-        // TO DO
+    public void getHotelProfil(Hotel hotel){
+        MVCPattern.view.afficheHotelProfil(hotel);
     }
 
-    public void loginProcess(){
-        // Get data
+    public void getLogin(){
+        MVCPattern.view.afficheLogin();
+    }
+
+    public void loginProcess(final FormRequest formRequest){
         RequestListener listener = new RequestListener() {
             @Override
             public void whenFinish() {
-                MVCPattern.view.activeUserBar();
+                // Connexion
+                String mail = formRequest.data.get("mail").toString();
+                String nom = formRequest.data.get("nom").toString();
+                String prenom = formRequest.data.get("prenom").toString();
+
+                MVCPattern.model.connectUser(mail, nom, prenom);
+                // Test redirection au menu
+                Log.i("Connexion", "Vous êtes connecté(e)");
             }
         };
 
-        // Il serais préférable d'utuliser un post pour recupere l'utilsateur via la requete sql
-        // avec les champs mail et mdp
-        //RequestTask request = new RequestTask(listener);
+        RequestPost request = new RequestPost(formRequest, listener);
+        request.execute(RequestAction.ws_url_post + "&var=req_login");
     }
 }

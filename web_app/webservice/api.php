@@ -22,9 +22,9 @@ function api_get($var) {
       $tab = array();
 
       $tab["hotels"] = array(
-        array("id"=>1, "nom" => "Hotel 1", "adresse" => "Gaudeloupe - Goyave", "tel" => "0690886012", "description" => "Une description tres courte", "prix"=>56.52),
-        array("id"=>2, "nom" => "Hotel 2", "adresse" => "Gaudeloupe - Capesterre", "tel" => "0690541875", "description" => "Une description tres courte 2", "prix"=>152.50),
-        array("id"=>3, "nom" => "Hotel 3", "adresse" => "Gaudeloupe - Deshaies", "tel" => "0690542896", "description" => "Une description tres courte 3", "prix"=>89.50)
+        array("id"=>1, "nom" => "Hotel 1", "adresse" => "Gaudeloupe - Goyave", "tel" => "0690886012", "cp" => "97122", "adresse"=> "Rue du caca", "rank"=>2.5, "description" => "Une description tres courte", "prix"=>56.52),
+        array("id"=>2, "nom" => "Hotel 2", "adresse" => "Gaudeloupe - Capesterre", "tel" => "0690541875", "cp" => "97126", "adresse"=> "Rue de laffont", "rank"=>5.0, "description" => "Une description tres courte 2", "prix"=>152.50),
+        array("id"=>3, "nom" => "Hotel 3", "adresse" => "Gaudeloupe - Deshaies", "tel" => "0690542896", "cp" => "97118", "adresse"=> "Rue du tfm", "rank"=>4.2, "description" => "Une description tres courte 3", "prix"=>89.50)
       );
 
       print(json_encode($tab));
@@ -67,7 +67,7 @@ function api_post($var){
         array("mail" => "laffont@gmail.com", "mdp" => "laffont971", "nom" => "Laffont", "prenom" => "Lise")
       );
 
-      foreach ($user as $tab['users']) {
+      foreach ($tab['users'] as $user) {
         if ($user['mail'] == $mail && $user['mdp'] == $mdp){
           $userResult = $user;
         }

@@ -18,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="right"
+        android:visibility="invisible"
         android:layout_below="@+id/hotel_icon">
 
         <TextView
@@ -41,6 +42,17 @@
             android:layout_marginTop="12dip"
             android:text=""/>
 
+        <RatingBar
+            android:id="@+id/rating_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="5.0"
+            android:isIndicator="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="3dp"
+            style="@style/hotel_rating_bar"/>
+
     </LinearLayout>
 
     <TextView
@@ -52,6 +64,32 @@
         android:layout_marginTop="4dip"
         android:layout_below="@+id/layout_hotel_text"
         android:text=""/>
+
+    <LinearLayout
+        android:id="@+id/layout_hotel_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:visibility="invisible"
+        android:layout_below="@+id/hotel_description">
+
+        <TextView
+            android:id="@+id/txv_view_more_hotel"
+            android:text="Voir plus"
+            android:textColor="@color/colorLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_reservation"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:text="Reserver"
+            style="@style/button_reserver"
+            android:background="@drawable/main_button"/>
+
+    </LinearLayout>
+
 
     <ListView
         android:layout_width="wrap_content"

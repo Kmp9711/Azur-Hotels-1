@@ -1,16 +1,21 @@
 package com.example.dzak.azurhotels.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 import com.example.dzak.azurhotels.FormRequest;
+import com.example.dzak.azurhotels.HotelActivity;
+import com.example.dzak.azurhotels.LoginActivity;
+import com.example.dzak.azurhotels.MVCPattern;
 import com.example.dzak.azurhotels.R;
-import com.example.dzak.azurhotels.listener.FormListener;
+import com.example.dzak.azurhotels.intent.HotelProfilActivity;
 import com.example.dzak.azurhotels.listener.MenuListener;
+import com.example.dzak.azurhotels.listener.ViewListener;
 import com.example.dzak.azurhotels.model.Hotel;
 
 import java.util.ArrayList;
@@ -21,12 +26,10 @@ import java.util.ArrayList;
 public class AzureHotelView {
 
     public Activity activity;
+    public Intent intent;
     public FormRequest request;
 
-    String[] titleTexte = {"Menu principale", "Les hotels"};
-
-    ListView lv_hotels;
-    ListViewHotelAdapter mAdapter;
+    String[] titleTexte = {"Menu principale", "Les hotels", "Connexion"};
 
     MenuListener menuListener;
 
@@ -39,44 +42,87 @@ public class AzureHotelView {
     }
 
     public void afficheMenu(){
-        // Change layout
-        switchPage(0);
+        // Change activity intention
+//        Intent menu_intent = new Intent(activity, MenuActivity.class);
+//        switchActivity(menu_intent);
 
         // Btn listener
-        Button btn_hotels = (Button) activity.findViewById(R.id.btn_hotels);
+        View view = activity.findViewById(R.id.layout_menu);
+        LinearLayout layout = (LinearLayout) view.findViewById(R.id.menu_linear_layout);
+
+        Button btn_hotels = (Button) layout.findViewById(R.id.btn_hotels);
+        Button btn_login = (Button) layout.findViewById(R.id.btn_login);
+
+
+        // Bouton pour appeler le controller hotel
         btn_hotels.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                menuListener.onMenuClick();
+                MVCPattern.controller.getHotels();
+            }
+        });
+
+        // Bouton pour appeler le controller login
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MVCPattern.controller.getLogin();
             }
         });
     }
 
     public void afficheLesHotels(ArrayList<Hotel> lesHotels){
-        // Change layout
-        switchPage(1);
-
-        // Display list
-        mAdapter = new ListViewHotelAdapter(activity, lesHotels);
-        lv_hotels = (ListView) activity.findViewById(R.id.lv_hotels);
-        lv_hotels.setAdapter(mAdapter);
+        Intent menu_intent = new Intent(activity, HotelActivity.class);
+        switchActivity(menu_intent);
     }
 
     public void afficheLogin(){
-        request = new FormRequest();
-        String mail = "";
-        String mdp = "";
-        request.data.put("mail", mail);
-        request.data.put("mdp", mdp);
-
-        FormListener listener = new FormListener() {
+        // Set listener
+        MVCPattern.currentListener = new ViewListener() {
             @Override
-            public void onSend() {
-                ArrayList<String> fields = new ArrayList<>();
-                ArrayList<Object> objects = new ArrayList<>();
-                sendRequest(fields, objects);
+            public void onActivityHasChange() {
+                request = new FormRequest();
+
+                View view = MVCPattern.currentActivity.findViewById(R.id.connexion_layout);
+
+                final EditText edt_mail = (EditText) view.findViewById(R.id.editText4);
+                final EditText edt_mdp = (EditText) view.findViewById(R.id.editText5);
+
+                edt_mail.setText("laffont@gmail.com");
+                edt_mdp.setText("laffont971");
+
+                Button btn_valider = (Button) view.findViewById(R.id.btn_valider);
+
+                btn_valider.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Pendant le onclick
+
+                    request.data.put("mail", edt_mail.getText().toString());
+                    request.data.put("mdp", edt_mdp);
+
+                    MVCPattern.controller.loginProcess(request);
+                    }
+                });
             }
         };
+
+        Intent menu_intent = new Intent(activity, LoginActivity.class);
+        switchActivity(menu_intent);
+    }
+
+    public void afficheHotelProfil(Hotel hotel){
+        Intent hotel_intent = new Intent(activity, HotelProfilActivity.class);
+        // Put extra
+        hotel_intent.putExtra("nom", hotel.getNom());
+        hotel_intent.putExtra("price", hotel.getPrix());
+        hotel_intent.putExtra("rank", hotel.getRate());
+        hotel_intent.putExtra("tel", hotel.getTel());
+        hotel_intent.putExtra("cp", hotel.getCp());
+        hotel_intent.putExtra("adresse", hotel.getAdresse());
+        hotel_intent.putExtra("description", hotel.getDescription());
+        // Switch activity
+        switchActivity(hotel_intent);
     }
 
     public void activeUserBar(){
@@ -88,25 +134,10 @@ public class AzureHotelView {
         textView.setText(titleTexte[index]);
     }
 
-    /**
-     * Send request
-     * @param fields
-     * @param values
-     */
-    public void sendRequest(ArrayList<String> fields, ArrayList<Object> values){
-        request = new FormRequest();
-
-        for(int i = 0; i < fields.size(); i++){
-            request.data.put(fields.get(i), values.get(i));
-        }
+    public void switchActivity(Intent new_intent){
+        activity.startActivity(new_intent);
+        intent = new_intent;
     }
 
-    public void switchPage(int index){
-        // Switch page
-        ViewSwitcher switcher = (ViewSwitcher) activity.findViewById(R.id.viewSwitcher);
-        switcher.setDisplayedChild(index);
-        // Set title session
-        setTitle(index);
-    }
 
 }
